@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<h1 style="font-family: marker felt"> Students Details &#128526;</h1>
+<table>
+    <thead>
+        <tr>
+            <th> ID</th>
+            <th> Fullname</th>
+            <th> Email</th>
+            <th> Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td><a href='{{ url_for("update")}}'>
+                <button style="background-color: #a8a832;color:aliceblue;border-radius: 5px; font-size: 18px;">Update</button>
+            </a>
+            <a onclick="checker()" href='{{ url_for("delete")}}'>
+                <button style="background-color: #a83e32;color:aliceblue;border-radius: 5px; font-size: 18px;">Delete</button>
+            </a></td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table> 
+<br>
+<br>
+<a href='{{ url_for("index")}}'>
+    <button style="background-color: #00630c;color:aliceblue;border-radius: 5px; font-size: 18px;">Create</button>
+</a>
+<br>
+<br>
+<a href='{{ url_for("update")}}'>
+    <button style="background-color: #a8a832;color:aliceblue;border-radius: 5px; font-size: 18px;">Update</button>
+</a>
+<br>
+<br>
+<a onclick="sendUserInfo()"></a>
+    <button type="button" onclick="sendUserInfo()">Test</button>
+</a>
+</body>
+<script>
+    function sendUserInfo() {
+        let userInfo = {
+            'name': 'John Brown',
+            'type': 'Admin'
+        }
+        const request = new XMLHttpRequest()
+        request.open('POST', `/processUserInfo/${JSON.stringify(userinfo)}`)
+        request.onload = () => {
+            const flaskMessage = request.responseText
+            console.log(flaskMessage)
+        }
+        request.send()
+    }
+
+    function checker() {
+        var result = confirm('Are you sure?');
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
+</script>
+</html>

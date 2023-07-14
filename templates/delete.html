@@ -1,0 +1,11 @@
+<h1 style="font-family: marker felt">Delete Form &#128557;</h1>
+
+<form method="post" action='{{ url_for("delete")}}'>
+    <label for="name" style="font-family: big caslon">Delete Student Name: </label>
+    <input type="text" name="fullname" placeholder="Enter Name" required/><br><br>
+    <input type="submit" value="Submit" style="font-family: Arial rounded mt bold"/>
+</form>
+<br>
+<a href='{{ url_for("students")}}'>
+    <button style="background-color: #003d87;color:aliceblue;border-radius: 5px; font-size: 18px;">Back to Lists</button>
+</a>
