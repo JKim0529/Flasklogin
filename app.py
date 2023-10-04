@@ -2,10 +2,10 @@ from flask import Flask, render_template, request, redirect
 import json
 import mysql.connector
 
-connection = mysql.connector.connect(host='localhost', port='8889',
-                                     database='students_db',
-                                     user='root',
-                                     password='root')
+connection = mysql.connector.connect(host=ADDRESS, port=PORT_NUMBER,
+                                     database=DATABASE_NAME,
+                                     user=USERNAME,
+                                     password=PASSWORD)
 
 cursor = connection.cursor()
 
